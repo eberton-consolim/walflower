@@ -11,6 +11,18 @@
 	<fx:Script>
 		<![CDATA[
 			
+			
+			/**
+			 * 
+			 * 
+			 * This example file just shows the translator running against some html.
+			 * It doesn't generate any output yet.
+			 * It is just for reference when building your own projects with walflower.
+			 *
+			 * 
+			 */
+			
+			
 			import com.wir35.walflower.xhtml.XhtmlToTextFlow;
 			
 			import flashx.textLayout.elements.FlowElement;

@@ -415,9 +415,8 @@ package com.wir35.walflower.xhtml
 				if (htmlId != "") {
 					linkElement.styleName = XhtmlToTextFlow.joinStyles(linkElement.styleName, 'a#' + htmlId);
 				}
-				// And now add the event handler? Way interdependent ... ick
-				linkElement.addEventListener(flashx.textLayout.events.FlowElementMouseEvent.CLICK,
-					FlexGlobals.topLevelApplication._controller.textFlowLinkHandler);
+				// There are no mouse handlers for links at the moment, but you could ad them here ie
+				// linkElement.addEventListener(flashx.textLayout.events.FlowElementMouseEvent.CLICK, mylinkHandler);
 				// And now parse link children, usually simple content
 				XhtmlToTextFlow.parseChildren(xhtml, linkElement, styleStack);
 			} else {

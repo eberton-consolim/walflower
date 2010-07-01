@@ -1,5 +1,11 @@
 package com.wir35.walflower.style
 {
+	/**
+	 * This is an AS3 implementation of Franklin M. Liangs hyphenation algorithm,
+	 * well known from LaTex and OpenOffice. 
+	 * Ported from the javascript implementation at http://code.google.com/p/hyphenator/
+	 * Currently only has the english patterns, but more languages can be added easily.
+	 */
 	public final class Hyphenator
 	{
 		
@@ -28,7 +34,7 @@ package com.wir35.walflower.style
 			convertPatterns();
 		}
 		
-		public function convertPatterns():void {   
+		protected function convertPatterns():void {   
 			var plen:*; 
 			var anfang:int;  
 			var pats:Object; 
@@ -49,7 +55,12 @@ package com.wir35.walflower.style
 			}
 			_english.patterns = tmp;
 		}
-		
+		/**
+		 * Hyphenate a word.
+		 * Hyphenation adds "shy" codes (\u00AD) at every possible hyphenation spot, 
+		 * so the Text Layout framework can wrap the column optimally.
+		 * @param word the string to be hyphenated
+		 */
 		public function hyphenateWord(word:String):String {
 			var lo:Object = _english; // Maybe add more languages later
 			var parts:Array, i:int, l:int, w:String, wl:int, s:Array, hypos:Array;
