@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   creationComplete="creationComplete()" >
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import com.wir35.walflower.xhtml.XhtmlToTextFlow;
+			
+			import flashx.textLayout.elements.FlowElement;
+			import flashx.textLayout.elements.TextFlow;
+			import flashx.textLayout.container.ContainerController;
+			import flashx.textLayout.conversion.ConversionType;
+			import flashx.textLayout.conversion.TextConverter;
+			import mx.core.UIComponent;
+			
+			public var spine:Array = new Array(); // of XML
+			public var flatPage:XML = <body/> ; // a container to pour our flattened xhtml into
+			
+			public var textFlow:TextFlow;
+			public var container:UIComponent;
+			public var controller:ContainerController;
+			
+			public var xhtml1:XML = <html>
+							<head>
+								<title>Foo</title>
+							</head>
+							<body>
+								<div id="main">
+									<div class="page">
+										<h1>Alice Through the Looking Glass</h1>
+										<p>by Lewis Carrol</p>
+										<h2>Chapter I</h2>
+										<p>And it's <i><span class="foo"><b>the</b> best</span> kind</i> of day.</p>
+										<p>"I will spend it 'wisely' I think."</p>
+										<div>
+											<h2>Chapter II</h2>
+											<p>'I should' see the garden far better,' said Alice to herself, 'if I could get to the top of that hill.</p>
+										</div>
+									</div>
+								</div>
+							</body>
+						</html>;
+			
+			public var xhtml2:XML = <html>
+									<body>
+								     <div id="content">
+								          <div id="section1">
+								               <h1>Chapter 1</h1>
+								               <p>The night was...</p>
+								               <ul>
+								                    <li> Dark </li>
+								                    <li> Stormy </li>
+								               </ul>
+								          </div>
+								     </div>
+									</body>
+								</html>
+			
+			
+			public function creationComplete():void {  
+				
+				testSectionSplitter();
+				testTranslator();	
+				
+			}
+			
+			protected function testSectionSplitter():void 
+			{
+				//
+			}
+			
+			protected function testTranslator():void 
+			{
+				
+				// Get the body. Discard head content
+				var body:XML = xhtml2..*::body[0];
+				
+				// Flatten as much as possible
+				XhtmlToTextFlow.flattenElements(body, flatPage); 
+				
+				// Translate
+				textFlow = XhtmlToTextFlow.convert(flatPage);
+				
+				// Test output
+				XhtmlToTextFlow.testOutput(textFlow);
+				
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+</s:Application>

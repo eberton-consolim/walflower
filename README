@@ -1,0 +1,8 @@
+Walflower is a set of ActionScript libraries to facilitate working with ePub files 
+in Flash's Text Layout Framework. Pieces of it are being migrated up to this repository
+as I can modularize and organize them out of an existing eBook reader project.
+
+The library integrates the nochump zip library, which it uses to unzip ePub files.
+
+Everything is MIT License.
+
